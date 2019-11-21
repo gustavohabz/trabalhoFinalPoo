@@ -14,7 +14,6 @@ import java.util.logging.Logger;
  * @author old_adam
  */
 public class OCliente {
-//testando
     /**
      * Ponto de entrada da execucao do app.
      * @param args the command line arguments
