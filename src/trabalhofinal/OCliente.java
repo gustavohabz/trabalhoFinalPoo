@@ -3,11 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ocliente;
 
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import ocliente.JanelaPrincipal;
+import trabalhofinal.TelaLogin;
 
 /**
  *
@@ -19,6 +17,11 @@ public class OCliente {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        TelaLogin tela;
+        tela = new TelaLogin();
+        
+        tela.setVisible(true);
+        
         JanelaPrincipal janela;
         janela = new JanelaPrincipal();
         
