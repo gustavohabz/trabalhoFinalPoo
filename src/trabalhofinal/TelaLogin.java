@@ -80,7 +80,7 @@ public class TelaLogin extends javax.swing.JPanel {
             this.setVisible(false);
             
             JanelaPrincipal janela;
-            janela = new JanelaPrincipal();
+            janela = new JanelaPrincipal(this.nomeUsuario);
 
             janela.setVisible(true);
         }

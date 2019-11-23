@@ -20,10 +20,13 @@ public class JanelaPrincipal
     /**
      * Creates new form JanelaPrincipal
      */
-    public JanelaPrincipal() {
+    public JanelaPrincipal(String nomeUsuario) {
         initComponents();
         // Cadastrar a janela como observador de mensagens.
         Servidor.getInstance().setObservadorDeMensagem((ObservadorDeMensagem) this);
+        //passando nome de usuario e setando como readonly
+        this.txtNomeUsuario.setText(nomeUsuario);
+        this.txtNomeUsuario.setEditable(false);
     }
 
     /**
@@ -84,7 +87,6 @@ public class JanelaPrincipal
         });
         jScrollPane2.setViewportView(listaUsuariosConectados);
 
-        txtNomeUsuario.setText(valorLogin.nomeUsuario);
         txtNomeUsuario.setToolTipText("");
         txtNomeUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,7 +114,7 @@ public class JanelaPrincipal
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(jLabel4)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(txtNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel3)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtUsuarioDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -120,7 +122,7 @@ public class JanelaPrincipal
                         .addComponent(botaoEnviar)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,7 +163,7 @@ public class JanelaPrincipal
         
         try {
             
-            Servidor.getInstance().connect(nomeDoUsuario, "192.168.6.78", 8910);
+            Servidor.getInstance().connect(nomeDoUsuario, "192.168.1.107", 1337);
             txtSaida.append("Conectamos!\n");
             
         } catch (IOException ex) {
@@ -173,8 +175,10 @@ public class JanelaPrincipal
         String texto = txtTexto.getText();
         String usuario = txtUsuarioDestino.getText();
         try {
-            Servidor.getInstance().enviarMensagemPara(usuario, texto);
-            txtSaida.append(usuario + "->" + texto);
+            if(!texto.equals("")){
+                Servidor.getInstance().enviarMensagemPara(usuario, texto);
+                txtSaida.append(usuario + "->" + texto);
+            }
         } catch (IOException ex) {
           txtSaida.append("Erro ao enviar mensagem");
         }
@@ -212,11 +216,11 @@ public class JanelaPrincipal
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        /*java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new JanelaPrincipal().setVisible(true);
             }
-        });
+        });*/
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
