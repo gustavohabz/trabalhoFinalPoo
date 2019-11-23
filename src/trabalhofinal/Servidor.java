@@ -1,18 +1,17 @@
 /**
  *
  */
-package ocliente;
+package trabalhofinal;
 
-import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.net.Socket;
+import java.util.ArrayList;
+import ocliente.ObservadorDeMensagem;
 
 /**
  * A Classe Servidor vai utilizar o design pattern chamado de Singleton: Apenas
@@ -21,7 +20,8 @@ import java.net.Socket;
  * @author prof-valmor
  */
 public class Servidor extends Thread {
-
+    //lista de clientes
+    public ArrayList<String> listaDeClientes;
     /**
      * Atributo para abrir o socket com a maquina remota.
      */
@@ -85,6 +85,7 @@ public class Servidor extends Thread {
     public void connect(String nomeDoUsuario, String ip, int porta) throws IOException {
         maquinaRemota = new Socket(ip, porta);
         this.nomeDoUsuario = nomeDoUsuario;
+        listaDeClientes.add(nomeDoUsuario);
         // Envinado nome do usuario.
         OutputStream out = maquinaRemota.getOutputStream();
         PrintStream ps = new PrintStream(out);

@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ocliente;
+package trabalhofinal;
 
 import java.io.IOException;
+import javax.swing.JOptionPane;
+import ocliente.ObservadorDeMensagem;
 
 /**
  *
@@ -14,14 +16,14 @@ import java.io.IOException;
 public class JanelaPrincipal 
         extends javax.swing.JFrame 
         implements ObservadorDeMensagem{
-
+     TelaLogin valorLogin = new TelaLogin();
     /**
      * Creates new form JanelaPrincipal
      */
     public JanelaPrincipal() {
         initComponents();
         // Cadastrar a janela como observador de mensagens.
-        Servidor.getInstance().setObservadorDeMensagem(this);
+        Servidor.getInstance().setObservadorDeMensagem((ObservadorDeMensagem) this);
     }
 
     /**
@@ -39,12 +41,13 @@ public class JanelaPrincipal
         botaoEnviar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtSaida = new javax.swing.JTextArea();
-        txtNomeUsuario = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtUsuarioDestino = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        listaUsuariosConectados = new javax.swing.JList<>();
+        listaUsuariosConectados = new javax.swing.JList<String>();
+        jLabel4 = new javax.swing.JLabel();
+        txtNomeUsuario = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,22 +73,24 @@ public class JanelaPrincipal
         txtSaida.setRows(5);
         jScrollPane1.setViewportView(txtSaida);
 
+        jLabel2.setText("Usuario");
+
+        jLabel3.setText("Digite o nome do usuario de destino abaixo");
+
+        listaUsuariosConectados.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(listaUsuariosConectados);
+
+        txtNomeUsuario.setText(valorLogin.nomeUsuario);
+        txtNomeUsuario.setToolTipText("");
         txtNomeUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNomeUsuarioActionPerformed(evt);
             }
         });
-
-        jLabel2.setText("Usuario");
-
-        jLabel3.setText("Digite o nome do usuario de destino abaixo");
-
-        listaUsuariosConectados.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane2.setViewportView(listaUsuariosConectados);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,15 +103,16 @@ public class JanelaPrincipal
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jScrollPane1)
                         .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(botaoConectar)
-                                    .addGap(77, 77, 77)
-                                    .addComponent(jLabel2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGap(69, 69, 69)))
+                            .addComponent(jLabel1)
+                            .addGap(170, 170, 170))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(botaoConectar)
+                            .addGap(77, 77, 77)
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jLabel4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txtNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel3)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtUsuarioDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -114,7 +120,7 @@ public class JanelaPrincipal
                         .addComponent(botaoEnviar)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,8 +128,9 @@ public class JanelaPrincipal
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoConectar)
-                    .addComponent(txtNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel4)
+                    .addComponent(txtNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addComponent(jLabel1)
                 .addGap(4, 4, 4)
@@ -162,10 +169,6 @@ public class JanelaPrincipal
         }
     }//GEN-LAST:event_botaoConectarActionPerformed
 
-    private void txtNomeUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomeUsuarioActionPerformed
-
     private void botaoEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEnviarActionPerformed
         String texto = txtTexto.getText();
         String usuario = txtUsuarioDestino.getText();
@@ -176,6 +179,10 @@ public class JanelaPrincipal
           txtSaida.append("Erro ao enviar mensagem");
         }
     }//GEN-LAST:event_botaoEnviarActionPerformed
+
+    private void txtNomeUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeUsuarioActionPerformed
+       
+    }//GEN-LAST:event_txtNomeUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -218,6 +225,7 @@ public class JanelaPrincipal
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JList<String> listaUsuariosConectados;

@@ -1,11 +1,12 @@
+package trabalhofinal;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
-import ocliente.JanelaPrincipal;
-import trabalhofinal.TelaLogin;
+import javax.swing.JFrame;
 
 /**
  *
@@ -17,15 +18,12 @@ public class OCliente {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        TelaLogin tela;
-        tela = new TelaLogin();
+        TelaLogin tela = new TelaLogin();
+        JFrame frame = new JFrame();
+        frame.setSize(539, 389); // Set the size of the window
+        frame.add(tela);
+        frame.setVisible(true);
         
-        tela.setVisible(true);
-        
-        JanelaPrincipal janela;
-        janela = new JanelaPrincipal();
-        
-        janela.setVisible(true);
         
     }
     
