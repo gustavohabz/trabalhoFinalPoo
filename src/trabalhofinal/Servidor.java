@@ -83,9 +83,7 @@ public class Servidor extends Thread {
      * metodo connect.
      */
     public void connect(String nomeDoUsuario, String ip, int porta) throws IOException {
-        System.out.println("funciona");
         maquinaRemota = new Socket(ip, porta);
-        System.out.println("nao funciona");
         this.nomeDoUsuario = nomeDoUsuario;
         listaDeClientes.add(nomeDoUsuario);
         // Envinado nome do usuario.

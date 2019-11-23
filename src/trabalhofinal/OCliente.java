@@ -24,7 +24,6 @@ public class OCliente {
         frame.add(tela);
         frame.setVisible(true);
         
-        
     }
     
 }

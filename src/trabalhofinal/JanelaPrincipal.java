@@ -54,6 +54,7 @@ public class JanelaPrincipal
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        botaoConectar.setFont(new java.awt.Font("Segoe UI Light", 0, 11)); // NOI18N
         botaoConectar.setText("Conectar");
         botaoConectar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,10 +62,13 @@ public class JanelaPrincipal
             }
         });
 
-        txtTexto.setText("Digitar mensagem");
+        txtTexto.setFont(new java.awt.Font("Segoe UI Light", 0, 11)); // NOI18N
+        txtTexto.setToolTipText("");
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI Light", 0, 11)); // NOI18N
         jLabel1.setText("Digite sua mensagem abaixo:");
 
+        botaoEnviar.setFont(new java.awt.Font("Segoe UI Light", 0, 11)); // NOI18N
         botaoEnviar.setText("Enviar");
         botaoEnviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,21 +76,24 @@ public class JanelaPrincipal
             }
         });
 
+        jScrollPane1.setFont(new java.awt.Font("Segoe UI Light", 0, 11)); // NOI18N
+
         txtSaida.setColumns(20);
         txtSaida.setRows(5);
         jScrollPane1.setViewportView(txtSaida);
 
-        jLabel2.setText("Usuario");
+        jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 11)); // NOI18N
+        jLabel2.setText("Usuário");
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI Light", 0, 11)); // NOI18N
         jLabel3.setText("Digite o nome do usuario de destino abaixo");
 
-        listaUsuariosConectados.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
+        jScrollPane2.setFont(new java.awt.Font("Segoe UI Light", 0, 11)); // NOI18N
+
+        listaUsuariosConectados.setFont(new java.awt.Font("Segoe UI Light", 0, 11)); // NOI18N
         jScrollPane2.setViewportView(listaUsuariosConectados);
 
+        txtNomeUsuario.setFont(new java.awt.Font("Segoe UI Light", 0, 11)); // NOI18N
         txtNomeUsuario.setToolTipText("");
         txtNomeUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,7 +129,7 @@ public class JanelaPrincipal
                         .addComponent(botaoEnviar)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,7 +158,7 @@ public class JanelaPrincipal
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();

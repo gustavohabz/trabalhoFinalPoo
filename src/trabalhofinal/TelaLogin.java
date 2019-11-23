@@ -5,6 +5,7 @@
  */
 package trabalhofinal;
 
+import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -33,9 +34,10 @@ public class TelaLogin extends javax.swing.JPanel {
         nomeUsuarioForm = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI Light", 0, 36)); // NOI18N
         jLabel1.setText("Digite seu nome de usuário");
 
+        jButton1.setFont(new java.awt.Font("Segoe UI Light", 0, 11)); // NOI18N
         jButton1.setText("Entrar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -51,20 +53,23 @@ public class TelaLogin extends javax.swing.JPanel {
                 .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
-                    .addComponent(nomeUsuarioForm, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(nomeUsuarioForm, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGap(52, 52, 52))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(79, 79, 79)
                 .addComponent(jLabel1)
-                .addGap(99, 99, 99)
+                .addGap(31, 31, 31)
                 .addComponent(nomeUsuarioForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addGap(90, 90, 90)
                 .addComponent(jButton1)
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     String nomeUsuario;
@@ -78,7 +83,6 @@ public class TelaLogin extends javax.swing.JPanel {
             
         }else{
             this.setVisible(false);
-            
             JanelaPrincipal janela;
             janela = new JanelaPrincipal(this.nomeUsuario);
 
