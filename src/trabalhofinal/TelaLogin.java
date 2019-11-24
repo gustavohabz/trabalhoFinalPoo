@@ -6,6 +6,7 @@
 package trabalhofinal;
 
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 
 /**
@@ -36,6 +37,12 @@ public class TelaLogin extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Light", 0, 36)); // NOI18N
         jLabel1.setText("Digite seu nome de usuário");
+
+        nomeUsuarioForm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nomeUsuarioFormActionPerformed(evt);
+            }
+        });
 
         jButton1.setFont(new java.awt.Font("Segoe UI Light", 0, 11)); // NOI18N
         jButton1.setText("Entrar");
@@ -82,14 +89,29 @@ public class TelaLogin extends javax.swing.JPanel {
         //implementar validação de usuário já existente!
             
         }else{
+            
+            try {
+            
+            Servidor.getInstance().connect(this.nomeUsuario, "192.168.1.107", 8080);
             this.setVisible(false);
             JanelaPrincipal janela;
             janela = new JanelaPrincipal(this.nomeUsuario);
 
             janela.setVisible(true);
+            
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao realizar login");
+                ex.printStackTrace();
+               // txtSaida.append("Erro ao conectar\n");
+            }
+            
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void nomeUsuarioFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeUsuarioFormActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nomeUsuarioFormActionPerformed
 
         
     // Variables declaration - do not modify//GEN-BEGIN:variables
