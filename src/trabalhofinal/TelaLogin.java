@@ -92,7 +92,7 @@ public class TelaLogin extends javax.swing.JPanel {
             
             try {
             
-            Servidor.getInstance().connect(this.nomeUsuario, "192.168.1.107", 8080);
+            Servidor.getInstance().connect(this.nomeUsuario, "192.168.1.107", 1234);
             this.setVisible(false);
             JanelaPrincipal janela;
             janela = new JanelaPrincipal(this.nomeUsuario);
